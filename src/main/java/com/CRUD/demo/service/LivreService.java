@@ -25,7 +25,11 @@ public class LivreService {
 	}
 	
 	public Livre getLivre(Integer id){	
-		return repo.findById(id).orElse(null);
+		Livre currentLivre=repo.findById(id).get();
+        Livre newLivre=repo.findById(id).get();
+        newLivre.setDconsultation(new Date());
+        repo.save(newLivre);
+        return currentLivre;
         
 	}
 	
